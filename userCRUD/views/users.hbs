@@ -1,0 +1,61 @@
+<div class="p-5 rounded mt-2">
+    <h2 class="text-primary mb-5">Funcionários cadastrados</h2>
+    {{#if showTable}}
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col" class="text-black-50">ID</th>
+          <th scope="col" class="text-black-50">Nome</th>
+          <th scope="col" class="text-black-50">E-mail</th>
+          <th scope="col" class="text-black-50">Salário</th>
+          <th scope="col" class="text-black-50">Opções</th>
+        </tr>
+      </thead>
+      <tbody class="table-group-divider">
+        {{#each data}}
+          <tr>
+            <th scope="row">{{id}}</th>
+            <td>{{name}}</td>
+            <td>{{email}}</td>
+            <td>{{salary}}</td>
+            <td>
+              <div class="row g-1">
+                  <div class="col col-md-3">
+                      <a href="/edit/{{id}}" class="w-100 btn btn-secondary">Editar</a>
+                  </div>
+                  <div class="col col-md-3">
+                      <a href="#" class="w-100 btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal_{{id}}">Deletar</a>
+                  </div>
+              </div>
+            </td>
+          </tr>
+
+          <div class="modal fade" id="deleteModal_{{id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Deletar usuário</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body fw-bold text-secondary">
+                  <p>Este processo sera inrevercivel !</p>
+                  <p>Tem certeza que quer deletar o usuário <span class="text-danger">{{name}}</span> ?</p>
+                </div>
+                <div class="modal-footer">
+                  <a href="/delete/{{id}}" class="btn btn-danger">Deletar</a>
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        {{/each}}
+      </tbody>
+    </table>
+    {{else}}
+      <div class="card mt-4 text-bg-light">
+        <div class="card-body">
+          Nenhum usuario cadastrado!
+        </div>
+      </div>
+    {{/if}}
+</div>

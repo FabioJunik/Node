@@ -1,0 +1,38 @@
+{{#unless error}}
+    <div class="bg-light p-5 rounded mt-5">
+        <h2 class="text-primary">Editar usuario</h2>
+        <form action="/update" method="post">
+            <div class="row mt-5">
+                <div class="col-md-3 mb-4">
+                    <label for="name" class="form-label">Nome completo</label>
+                    <input type="hidden" name="id" value="{{id}}">
+                    <input 
+                        type="text" class="form-control" id="name" name="name" 
+                        value="{{name}}" placeholder="Digite seu nome" required
+                    >
+                </div>
+                <div class="col-md-4">
+                    <label for="email" class="form-label">Endereço de email</label>
+                    <input type="email" class="form-control" id="email" name="email" 
+                        value="{{email}}" placeholder="Digite seu email"required
+                    >
+                </div>
+                <div class="col-md-3">
+                    <label for="email" class="form-label">Salário</label>
+                    <input type="number" class="form-control" id="salary" value={{salary}}
+                        name="salary" placeholder="Informe o salario"
+                    >
+                </div>
+                <div class="col-md-2 mt-2">
+                    <button type="submit" class="btn btn-primary mt-4 w-100">Salvar</button>
+                </div>  
+            </div>
+        </form>
+    </div>
+{{else}}
+    <div class="card bg-danger text-white mt-5">
+        <div class="card-body">
+            Usuario não encontradado !
+        </div>
+    </div>
+{{/unless}}
