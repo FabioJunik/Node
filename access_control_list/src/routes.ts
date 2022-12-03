@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { CreateProductController } from "./controllers/CreateProductController";
+import { CreateRoleController } from "./controllers/CreateRoleController";
 import { CreateUserController } from "./controllers/CreateUserController";
 import { GetAllProductsController } from "./controllers/GetAllProductsController";
 import { SessionController } from "./controllers/SessionController";
@@ -16,6 +17,8 @@ routes.post(
   ensuredAuthenticated(),
   new CreateProductController().handle
 );
+
+routes.post("/roles", ensuredAuthenticated(), new CreateRoleController().handle);
 
 
 export { routes };

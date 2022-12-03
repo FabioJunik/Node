@@ -23,7 +23,7 @@ export class SessionService {
       return new Error("User or Password incorrect");
     }
 
-    const token = sign({}, process.env.SECRET_JWT, {
+    const token = sign({}, "b2fc25582af9861459837b12ed2a6742", {
       subject: user.id,
     });
 

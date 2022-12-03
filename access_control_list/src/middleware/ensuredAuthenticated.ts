@@ -12,7 +12,7 @@ export const ensuredAuthenticated = () => {
     const [, token] = authHeaders.split(" ");
 
     try {
-      verify(token, process.env.SECRET_JWT);
+      verify(token, "b2fc25582af9861459837b12ed2a6742");
 
       const { sub } = decode(token);
       request.userId = sub.toString();
