@@ -2,6 +2,7 @@ import { Router } from "express";
 import { CreatePermissionController } from "./controllers/CreatePermissionController";
 import { CreateProductController } from "./controllers/CreateProductController";
 import { CreateRoleController } from "./controllers/CreateRoleController";
+import { CreateRolePermissionController } from "./controllers/CreateRolePermissionController";
 import { CreateUserAccessControlListController } from "./controllers/CreateUserAccessControlListController";
 import { CreateUserController } from "./controllers/CreateUserController";
 import { GetAllProductsController } from "./controllers/GetAllProductsController";
@@ -28,6 +29,10 @@ routes.post(
   "/users/acl",
   ensuredAuthenticated(),
   new CreateUserAccessControlListController().handle
-)
+);
 
+routes.post(
+  "/roles/:roleId",
+  new CreateRolePermissionController().handle
+);
 export { routes };
