@@ -8,6 +8,7 @@ import { CreateUserController } from "./controllers/CreateUserController";
 import { GetAllProductsController } from "./controllers/GetAllProductsController";
 import { SessionController } from "./controllers/SessionController";
 import { ensuredAuthenticated } from "./middleware/ensuredAuthenticated";
+import { can, is } from "./middleware/permission";
 
 const routes = Router();
 
@@ -18,10 +19,15 @@ routes.get("/products", new GetAllProductsController().handle);
 routes.post(
   "/products",
   ensuredAuthenticated(),
+  can(["create_product"]),
   new CreateProductController().handle
 );
 
-routes.post("/roles", ensuredAuthenticated(), new CreateRoleController().handle);
+routes.post(
+  "/roles",
+  ensuredAuthenticated(),
+  is(["admin"]),
+  new CreateRoleController().handle);
 
 routes.post("/permissions", ensuredAuthenticated(), new CreatePermissionController().handle);
 
