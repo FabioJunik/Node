@@ -19,7 +19,7 @@ const messages: Message[] = [];
 
 io.on('connection', (socket) => {
 
-    socket.on('select_room', (data: RoomUser, callback) => {
+    socket.on('select_room', (data, callback) => {
 
         socket.join(data.room)
 
@@ -27,15 +27,17 @@ io.on('connection', (socket) => {
 
         if (userInRoom) {
             userInRoom.socket_id = socket.id;
-            return;
+        } else {
+            users.push({
+                socket_id: socket.id,
+                username: data.username,
+                room: data.room,
+            });
         }
 
-        users.push({
-            socket_id: socket.id,
-            username: data.username,
-            room: data.room,
-        });
+        const messagesRoom = getMessagesRoom(data.room);
 
+        callback(messagesRoom);
     });
 
     socket.on('message', (data: Message) => {
@@ -46,3 +48,5 @@ io.on('connection', (socket) => {
         io.to(data.room).emit('message', data);
     });
 })
+
+const getMessagesRoom = (room: string) => messages.filter(message => message.room === room);

@@ -7,6 +7,10 @@ const room = urlSearch.get('select_room');
 socket.emit('select_room', {
     username,
     room
+}, (messages) => {
+    messages.forEach(message => {
+        createMessage(message);
+    });
 });
 
 const userDiv = document.querySelector('#username');
@@ -28,6 +32,11 @@ document.querySelector('#message').addEventListener('keypress', (event) => {
 });
 
 socket.on('message', (data) => {
+    createMessage(data)
+});
+
+
+function createMessage(data) {
     const messageDiv = document.querySelector('#messages');
 
     messageDiv.innerHTML += `
@@ -40,4 +49,4 @@ socket.on('message', (data) => {
             </label>
         </div>
     `;
-});
+}
