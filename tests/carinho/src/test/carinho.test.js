@@ -29,4 +29,22 @@ describe('Testes carrinho', () => {
 
     expect(englobaErroCarrinho).toThrowError('Carrinho de compras vazio');
   });
+
+  it('Deve finalizar as compras', () => {
+    const item = new Item('Banana', 10, 5);
+    const item2 = new Item('Abacate', 4, 30);
+
+    const carrinho = new Carrinho();
+    carrinho.adiciona(item);
+    carrinho.adiciona(item2);
+    carrinho.adicionaFrete(2)
+
+    const compraFinalizada = carrinho.finalizaCompra()
+    expect(compraFinalizada).toStrictEqual({
+      subtotal: 170,
+      frete: 2, 
+      total: 172
+    })
+
+  })
 });
