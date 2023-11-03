@@ -30,6 +30,20 @@ describe('Testes carrinho', () => {
     expect(englobaErroCarrinho).toThrowError('Carrinho de compras vazio');
   });
 
+  it('Deve calcular o total', () => {
+    const item = new Item('Banana', 10, 5);
+    const item2 = new Item('Abacate', 4, 30);
+
+    const carrinho = new Carrinho();
+    carrinho.adiciona(item);
+    carrinho.adiciona(item2);
+    carrinho.adicionaFrete(2)
+
+    const totalDasCompras = carrinho.calculaTotal()
+
+    expect(totalDasCompras).toBe(172)
+  });
+
   it('Deve finalizar as compras', () => {
     const item = new Item('Banana', 10, 5);
     const item2 = new Item('Abacate', 4, 30);
