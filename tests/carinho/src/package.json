@@ -1,0 +1,20 @@
+{
+  "name": "1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "api.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
+    "tests": "node --experimental-vm-modules node_modules/jest/bin/jest.js --detectOpenHandles"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "devDependencies": {
+    "jest": "^28.1.0"
+  }
+}
